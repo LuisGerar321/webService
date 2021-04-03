@@ -53,7 +53,9 @@ const Trivia =  () =>{
 
 
 
-        console.log(question);
+
+
+
 
         const HandleButtonChange = (step)=>{
                 if(step === "down"){
@@ -65,7 +67,8 @@ const Trivia =  () =>{
                         if(questionNo<7 ){
                                 updateQuestionNo(questionNo +1);
                         }
-                }      
+                }
+                console.log(question[questionNo].correctAnswer);      
         };
 
         const isCorrectCallback  = (Correct) => {
@@ -78,14 +81,26 @@ const Trivia =  () =>{
         if(isLoading){
                 return <p>Loading...</p>;
         };
-        console.log(question[0])
+
         if(!isLoading){
+                console.log(question[questionNo].correctAnswer);  
+                const entities = {
+                        '&#039;': "'",
+                        '&#039;':"'",
+                        '&quot;': '"',
+                        "U&#039;": "'",
+                        "&#039;": "'",
+                        '&#039;':"'"
+
+                        // add more if needed
+                        // Source: https://forum.freecodecamp.org/t/how-to-replace-html-entities-in-api-response-with-react/205665
+                };
+
                 return (
                         <React.Fragment>
                                 <div style = { boardStyle} >
-                                <p style = {counterStyle}>Correct Answer: {question[questionNo].correct_answer}</p>
                                 <p style = {counterStyle}>Counter: {score}/10</p>
-                                <Card question = {question[questionNo].question} answers = {question[questionNo].incorrect_answers} correctAnswer = {question[questionNo].correct_answer} isCorrect = {isCorrectCallback}  ></Card>
+                                <Card question = {question[questionNo].question.replace(/&#?\w+;/, match => entities[match])} answers = {question[questionNo].incorrect_answers} correctAnswer = {question[questionNo].correct_answer} isCorrect = {isCorrectCallback}  ></Card>
                                 <div style = { buttonsStyle}> 
                                         <button onClick = {() => HandleButtonChange("down")} style = {{margin:"10px", borderRadius: "1rem",  width:"100px", height: "40px", }}>Previus</button>
                                         <button onClick = { () => HandleButtonChange("up") } style = {{margin:"10px", borderRadius: "1rem",  width:"100px", height: "40px", }}>Next</button>                        

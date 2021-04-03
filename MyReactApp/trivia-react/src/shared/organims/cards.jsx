@@ -9,8 +9,22 @@ const divStyle = {
 
 
 
+
 const cards = ({question,  answers, correctAnswer, isCorrect}) => {
-        const allAnswer  =  [...answers].concat(correctAnswer);
+
+        const arrMix =  (arr) => {
+                const newArr =  [];
+                let idx = 0; 
+                while(newArr.length<arr.length){
+                        do{
+                                idx = Math.floor(Math.random()*arr.length);
+                        }while( newArr.includes(  arr[idx] ))
+                        newArr.push(   arr[idx] );
+                };
+                return newArr;
+        }
+
+        const allAnswer  =  arrMix( [...answers].concat(correctAnswer)    );
 
         const CheckAnswer = (selectedAnswer) =>{
                 if(selectedAnswer === correctAnswer){
