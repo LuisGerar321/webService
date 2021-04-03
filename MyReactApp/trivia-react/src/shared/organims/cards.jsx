@@ -10,7 +10,6 @@ const divStyle = {
 
 
 const cards = ({question,  answers, correctAnswer, isCorrect}) => {
-        {console.log("Putito", correctAnswer)};
         const allAnswer  =  [...answers].concat(correctAnswer);
 
         const CheckAnswer = (selectedAnswer) =>{

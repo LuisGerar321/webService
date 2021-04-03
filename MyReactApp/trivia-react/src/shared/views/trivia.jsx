@@ -83,7 +83,7 @@ const Trivia =  () =>{
                 return (
                         <React.Fragment>
                                 <div style = { boardStyle} >
-        
+                                <p style = {counterStyle}>Correct Answer: {question[questionNo].correct_answer}</p>
                                 <p style = {counterStyle}>Counter: {score}/10</p>
                                 <Card question = {question[questionNo].question} answers = {question[questionNo].incorrect_answers} correctAnswer = {question[questionNo].correct_answer} isCorrect = {isCorrectCallback}  ></Card>
                                 <div style = { buttonsStyle}> 
